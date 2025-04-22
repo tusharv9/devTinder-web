@@ -15,8 +15,10 @@ const Requests = () => {
         {},
         { withCredentials: true }
       );
-      dispatch(removeRequest(_id))
-    } catch (err) {}
+      dispatch(removeRequest(_id));
+    } catch (err) {
+      console.log(err.message);
+    }
   };
   const fetchRequests = async () => {
     try {
@@ -33,7 +35,8 @@ const Requests = () => {
 
   if (!requests) return;
 
-  if (requests.length === 0) return <h1 className="flex justify-center my-10">No Requests found</h1>;
+  if (requests.length === 0)
+    return <h1 className="flex justify-center my-10">No Requests found</h1>;
 
   return (
     <div className="text-center my-10">

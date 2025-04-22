@@ -19,16 +19,26 @@ const Feed = () => {
       dispatch(addFeed(res?.data?.data));
     } catch (err) {}
   };
+
   useEffect(() => {
     getFeed();
   }, []);
 
+  if (!feed) return null;
+
+  if (feed.length <= 0)
+    return (
+      <h1 className="flex justify-center items-center text-xl text-white mt-20">
+        No more users found
+      </h1>
+    );
+
   return (
-    feed && (
-      <div className="flex justify-center my-10">
+    <div className="flex justify-center my-10 px-4">
+      <div className="w-full max-w-2xl">
         <UserCard user={feed[0]} />
       </div>
-    )
+    </div>
   );
 };
 

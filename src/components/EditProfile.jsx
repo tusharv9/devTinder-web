@@ -35,82 +35,87 @@ const EditProfile = ({ user }) => {
   };
 
   return (
-    <>
-      <div className="flex flex-wrap justify-center items-start gap-10 my-10 px-4">
-        <div className="card card-border bg-base-300 w-full max-w-md">
-          <div className="card-body">
-            <h2 className="card-title justify-center">Edit Profile</h2>
-            <div>
-              <label className="form-control w-full my-2">
-                <div className="label">
-                  <span className="label-text">First Name</span>
-                </div>
+    <div className="min-h-screen py-12 px-4 bg-gradient-to-b from-gray-900 to-purple-900">
+      <div className="flex flex-wrap justify-center items-start gap-10 max-w-6xl mx-auto">
+        <div className="w-full max-w-md bg-gray-800 bg-opacity-70 rounded-xl shadow-2xl border border-purple-500 border-opacity-30 backdrop-blur-sm overflow-hidden">
+          <div className="p-6">
+            <h2 className="text-center text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-500 mb-6">
+              Edit Your Profile
+            </h2>
+            
+            <div className="space-y-4">
+              <div className="space-y-2">
+                <label className="text-purple-300 font-medium">First Name</label>
                 <input
                   type="text"
                   value={firstName}
-                  className="input input-bordered w-full"
+                  className="w-full px-4 py-3 rounded-lg bg-gray-700 text-white border border-purple-500 focus:border-pink-500 focus:ring-2 focus:ring-pink-500 focus:outline-none transition-all"
                   onChange={(e) => setFirstName(e.target.value)}
                 />
-              </label>
-              <label className="form-control w-full my-2">
-                <div className="label">
-                  <span className="label-text">Last Name</span>
-                </div>
+              </div>
+              
+              <div className="space-y-2">
+                <label className="text-purple-300 font-medium">Last Name</label>
                 <input
                   type="text"
                   value={lastName}
-                  className="input input-bordered w-full"
+                  className="w-full px-4 py-3 rounded-lg bg-gray-700 text-white border border-purple-500 focus:border-pink-500 focus:ring-2 focus:ring-pink-500 focus:outline-none transition-all"
                   onChange={(e) => setLastName(e.target.value)}
                 />
-              </label>
-              <label className="form-control w-full my-2">
-                <div className="label">
-                  <span className="label-text">Photo</span>
-                </div>
+              </div>
+              
+              <div className="space-y-2">
+                <label className="text-purple-300 font-medium">Photo URL</label>
                 <input
                   type="text"
                   value={photoUrl}
-                  className="input input-bordered w-full"
+                  className="w-full px-4 py-3 rounded-lg bg-gray-700 text-white border border-purple-500 focus:border-pink-500 focus:ring-2 focus:ring-pink-500 focus:outline-none transition-all"
                   onChange={(e) => setPhotoUrl(e.target.value)}
                 />
-              </label>
-              <label className="form-control w-full my-2">
-                <div className="label">
-                  <span className="label-text">Age</span>
+              </div>
+              
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <label className="text-purple-300 font-medium">Age</label>
+                  <input
+                    type="text"
+                    value={age}
+                    className="w-full px-4 py-3 rounded-lg bg-gray-700 text-white border border-purple-500 focus:border-pink-500 focus:ring-2 focus:ring-pink-500 focus:outline-none transition-all"
+                    onChange={(e) => setAge(e.target.value)}
+                  />
                 </div>
-                <input
-                  type="text"
-                  value={age}
-                  className="input input-bordered w-full"
-                  onChange={(e) => setAge(e.target.value)}
-                />
-              </label>
-              <label className="form-control w-full my-2">
-                <div className="label">
-                  <span className="label-text">Gender</span>
+                
+                <div className="space-y-2">
+                  <label className="text-purple-300 font-medium">Gender</label>
+                  <input
+                    type="text"
+                    value={gender}
+                    className="w-full px-4 py-3 rounded-lg bg-gray-700 text-white border border-purple-500 focus:border-pink-500 focus:ring-2 focus:ring-pink-500 focus:outline-none transition-all"
+                    onChange={(e) => setGender(e.target.value)}
+                  />
                 </div>
-                <input
-                  type="text"
-                  value={gender}
-                  className="input input-bordered w-full"
-                  onChange={(e) => setGender(e.target.value)}
-                />
-              </label>
-              <label className="form-control w-full my-2">
-                <div className="label">
-                  <span className="label-text">About</span>
-                </div>
-                <input
-                  type="text"
+              </div>
+              
+              <div className="space-y-2">
+                <label className="text-purple-300 font-medium">About</label>
+                <textarea
                   value={about}
-                  className="input input-bordered w-full"
+                  rows="4"
+                  className="w-full px-4 py-3 rounded-lg bg-gray-700 text-white border border-purple-500 focus:border-pink-500 focus:ring-2 focus:ring-pink-500 focus:outline-none transition-all"
                   onChange={(e) => setAbout(e.target.value)}
                 />
-              </label>
+              </div>
             </div>
-            <p className="text-red-500">{error}</p>
-            <div className="card-actions justify-center">
-              <button className="btn btn-primary m-2" onClick={saveProfile}>
+            
+            {error && (
+              <p className="mt-4 text-pink-500 text-center font-medium">{error}</p>
+            )}
+            
+            <div className="mt-8 text-center">
+              <button 
+                className="px-8 py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white font-medium rounded-lg shadow-lg hover:shadow-pink-500/25 transform hover:scale-105 transition-all duration-300"
+                onClick={saveProfile}
+              >
                 Save Profile
               </button>
             </div>
@@ -118,18 +123,25 @@ const EditProfile = ({ user }) => {
         </div>
 
         <div className="w-full max-w-sm">
-          <UserCard user={{ firstName, lastName, photoUrl, age, gender, about }} />
+          <div className="sticky top-10">
+            <h3 className="text-center text-xl font-medium text-purple-300 mb-4">
+              Profile Preview
+            </h3>
+            <div className="transform transition hover:scale-105 duration-300">
+              <UserCard user={{ firstName, lastName, photoUrl, age, gender, about }} />
+            </div>
+          </div>
         </div>
       </div>
 
       {showToast && (
-        <div className="toast toast-top toast-center">
-          <div className="alert alert-success">
-            <span>Profile updated successfully.</span>
+        <div className="fixed top-4 inset-x-0 flex justify-center items-start z-50">
+          <div className="bg-gradient-to-r from-green-500 to-teal-500 text-white font-medium px-6 py-3 rounded-lg shadow-xl transform animate-bounce">
+            Profile updated successfully!
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

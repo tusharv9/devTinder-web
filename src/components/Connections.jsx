@@ -23,47 +23,67 @@ const Connections = () => {
     fetchConnections();
   }, []);
 
-  if (!connections) return <div className="text-center my-10 text-lg">Loading...</div>;
+  if (!connections) return <div className="flex items-center justify-center h-64 text-lg font-medium text-purple-300">Loading...</div>;
 
   if (connections.length === 0)
     return (
-      <div className="text-center my-10 text-xl font-semibold text-base-content">
-        No connection found
+      <div className="flex flex-col items-center justify-center py-16 px-4 text-xl font-semibold text-pink-200">
+        No connection found yet. Keep coding and swiping!
       </div>
     );
 
   return (
-    <div className="my-10 px-4">
-      <h1 className="text-center text-3xl font-bold text-white mb-8">
+    <div className="py-12 px-4 bg-gradient-to-b from-gray-900 to-purple-900 min-h-screen">
+      <h1 className="text-center text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-500 mb-10">
         Connections
       </h1>
 
-      <div className="flex flex-wrap justify-center gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-6xl mx-auto">
         {connections.map((connection) => {
           const { _id, firstName, lastName, photoUrl, age, gender, about } = connection;
 
           return (
             <div
               key={_id}
-              className="card bg-base-300 shadow-md w-72 p-4 flex flex-col items-center text-center"
+              className="rounded-lg overflow-hidden bg-gray-800 shadow-lg border border-purple-500/30 hover:shadow-xl hover:shadow-purple-500/20 transition-all duration-300 transform hover:-translate-y-1"
             >
-              <img
-                alt="User"
-                className="w-20 h-20 rounded-full object-cover border border-base-content/20 mb-3"
-                src={photoUrl}
-              />
-              <div>
-                <h2 className="text-lg font-bold text-base-content">
-                  {firstName + " " + lastName}
-                </h2>
-                {age && gender && (
-                  <p className="text-sm text-base-content/70">
-                    {age} years old, {gender}
-                  </p>
-                )}
-                {about && (
-                  <p className="text-sm text-base-content/80 mt-1">{about}</p>
-                )}
+              <div className="relative w-full h-40 overflow-hidden">
+                <img
+                  alt="User"
+                  className="w-full h-full object-cover"
+                  src={photoUrl}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-900 opacity-60"></div>
+              </div>
+              
+              <div className="p-4 relative">
+                <div className="absolute -top-10 left-1/2 transform -translate-x-1/2">
+                  <div className="w-20 h-20 rounded-full border-4 border-purple-500 overflow-hidden bg-gray-800">
+                    <img
+                      alt="User"
+                      className="w-full h-full object-cover"
+                      src={photoUrl}
+                    />
+                  </div>
+                </div>
+                
+                <div className="pt-12 text-center">
+                  <h2 className="text-xl font-bold text-white">
+                    {firstName + " " + lastName}
+                  </h2>
+                  
+                  {age && gender && (
+                    <p className="text-sm text-purple-300 mt-1">
+                      {age} years old, {gender}
+                    </p>
+                  )}
+                  
+                  {about && (
+                    <p className="text-sm text-gray-300 mt-3 line-clamp-3">
+                      {about}
+                    </p>
+                  )}
+                </div>
               </div>
             </div>
           );

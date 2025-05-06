@@ -66,6 +66,7 @@ const Requests = () => {
         
         <div className="space-y-6">
           {requests.map((request) => {
+            if (!request.fromUserId) return null;
             const { _id, firstName, lastName, photoUrl, age, gender, about } =
               request.fromUserId;
             return (
